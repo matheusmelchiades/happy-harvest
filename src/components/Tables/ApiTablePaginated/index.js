@@ -7,6 +7,7 @@ export default function ApiTablePaginated({ path = '', ...props }) {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [inputSearch, setInputSearch] = useState('');
 
     async function fetchData() {
         try {
@@ -43,6 +44,11 @@ export default function ApiTablePaginated({ path = '', ...props }) {
             rowsPerPage={rowsPerPage}
             handleChangePage={handleChangePage}
             handleChangeRowsPerPage={handleChangeRowsPerPage}
+            search={{
+                searchInput: inputSearch,
+                onChangeInput: value => setInputSearch(value),
+                clearInput: () => setInputSearch(''),
+            }}
         />
     );
 }

@@ -9,8 +9,12 @@ import {
     TableRow,
     TableCell,
     TablePagination,
+    Toolbar,
+    Title,
+    InputSearch,
+    Icon,
+    ButtonIcon,
 } from './styles';
-import { Toolbar, Typography } from '@material-ui/core';
 
 export default ({
     title = '',
@@ -19,6 +23,11 @@ export default ({
     rowsPerPage = 10,
     handleChangePage,
     handleChangeRowsPerPage,
+    search: {
+        searchInput = '',
+        onChangeInput = () => {},
+        clearInput = () => {},
+    },
 }) => {
     return (
         <Container>
@@ -26,7 +35,22 @@ export default ({
                 <Paper>
                     {title && (
                         <Toolbar>
-                            <Typography variant="h6">{title}</Typography>
+                            <Title variant="h6">{title}</Title>
+                            <InputSearch
+                                value={searchInput}
+                                onChange={e => onChangeInput(e.target.value)}
+                                placeholder="Search..."
+                                InputProps={{
+                                    startAdornment: (
+                                        <Icon position="start">search</Icon>
+                                    ),
+                                    endAdornment: (
+                                        <ButtonIcon onClick={clearInput}>
+                                            <Icon position="close">close</Icon>
+                                        </ButtonIcon>
+                                    ),
+                                }}
+                            />
                         </Toolbar>
                     )}
                     <Table>
