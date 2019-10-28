@@ -13,15 +13,17 @@ export const Table = styled(MaterialUI.Table)``;
 
 export const TableHeader = styled(MaterialUI.TableHead)``;
 
-export const TableBody = styled(MaterialUI.TableBody)``;
-
-export const TableRow = styled(MaterialUI.TableRow).attrs({})`
-    &:hover {
+export const TableBody = styled(MaterialUI.TableBody)`
+    && .MuiTableRow-root:hover {
         background: #2ecc71;
         color: white;
     }
 `;
 
+export const TableRow = styled(MaterialUI.TableRow).attrs({})``;
+
 export const TableCell = styled(MaterialUI.TableCell).attrs({
     align: 'center',
 })``;
+
+export const TablePagination = styled(MaterialUI.TablePagination)``;

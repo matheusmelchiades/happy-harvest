@@ -8,9 +8,16 @@ import {
     TableBody,
     TableRow,
     TableCell,
+    TablePagination,
 } from './styles';
 
-export default ({ data: { headers = [], body = [] } }) => {
+export default ({
+    data: { headers = [], rows = [], count = 0 },
+    page = 0,
+    rowsPerPage = 5,
+    handleChangePage,
+    handleChangeRowsPerPage,
+}) => {
     return (
         <Container>
             <Paper>
@@ -23,7 +30,7 @@ export default ({ data: { headers = [], body = [] } }) => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {body.map(row => (
+                        {rows.map(row => (
                             <TableRow key={row.id}>
                                 {headers.map(fieldName => (
                                     <TableCell key={fieldName}>
@@ -34,6 +41,14 @@ export default ({ data: { headers = [], body = [] } }) => {
                         ))}
                     </TableBody>
                 </Table>
+                <TablePagination
+                    page={page}
+                    count={count}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[5, 10]}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                />
             </Paper>
         </Container>
     );
