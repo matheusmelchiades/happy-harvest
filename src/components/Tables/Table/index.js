@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import {
     Container,
@@ -19,15 +20,12 @@ import {
 export default ({
     title = '',
     data: { headers = [], rows = [], count = 0 },
+    onClick,
     page = 0,
     rowsPerPage = 10,
     handleChangePage,
     handleChangeRowsPerPage,
-    search: {
-        searchInput = '',
-        onChangeInput = () => {},
-        clearInput = () => {},
-    },
+    search: { searchInput = '', onChangeInput = () => {}, clearInput = () => {} },
 }) => {
     return (
         <Container>
@@ -41,9 +39,7 @@ export default ({
                                 onChange={e => onChangeInput(e.target.value)}
                                 placeholder="Search..."
                                 InputProps={{
-                                    startAdornment: (
-                                        <Icon position="start">search</Icon>
-                                    ),
+                                    startAdornment: <Icon position="start">search</Icon>,
                                     endAdornment: (
                                         <ButtonIcon onClick={clearInput}>
                                             <Icon position="close">close</Icon>
@@ -57,18 +53,21 @@ export default ({
                         <TableHeader>
                             <TableRow>
                                 {headers.map(header => (
-                                    <TableCell key={header}>{header}</TableCell>
+                                    <TableCell key={header.name}>{header.name}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {rows.map(row => (
-                                <TableRow key={row.id}>
-                                    {headers.map(fieldName => (
-                                        <TableCell key={fieldName}>
-                                            {row[fieldName]}
-                                        </TableCell>
-                                    ))}
+                                <TableRow key={row.id} onClick={() => onClick(row)}>
+                                    {headers.map(({ name, type }) => {
+                                        let content = row[name];
+
+                                        if (type === 'date')
+                                            content = moment(content).format('DD/MM/YYYY');
+
+                                        return <TableCell key={name}>{content}</TableCell>;
+                                    })}
                                 </TableRow>
                             ))}
                         </TableBody>

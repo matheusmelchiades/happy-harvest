@@ -9,21 +9,21 @@ export default function ApiTablePaginated({ path = '', ...props }) {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [inputSearch, setInputSearch] = useState('');
 
-    async function fetchData() {
-        try {
-            const response = await api.get(`${path}/listing`, {
-                params: {
-                    page,
-                    rowsPerPage,
-                },
-            });
-            setData(response.data);
-        } catch (err) {
-            return err.message;
-        }
-    }
-
     useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await api.get(`${path}/listing`, {
+                    params: {
+                        page,
+                        rowsPerPage,
+                    },
+                });
+                setData(response.data);
+            } catch (err) {
+                return err.message;
+            }
+        }
+
         fetchData();
     }, [page, rowsPerPage]);
 

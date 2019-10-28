@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import api from '../../services/api';
 import {
     Container,
@@ -10,7 +11,7 @@ import {
     ButtonIcon,
 } from './styles';
 
-const Toolbar = () => {
+const Toolbar = ({ history }) => {
     const [menus, setMenus] = useState([]);
 
     useEffect(() => {
@@ -37,7 +38,7 @@ const Toolbar = () => {
             <ToolContent>
                 {menus.map(({ icon, path }) => (
                     <ToolContentItem key={icon}>
-                        <ButtonIcon>
+                        <ButtonIcon onClick={() => history.push(path)}>
                             <Icon>{icon}</Icon>
                         </ButtonIcon>
                     </ToolContentItem>
@@ -47,4 +48,4 @@ const Toolbar = () => {
     );
 };
 
-export default Toolbar;
+export default withRouter(Toolbar);
