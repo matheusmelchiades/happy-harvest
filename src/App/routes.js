@@ -10,13 +10,15 @@ import {
  * PAGES COMPONENTS
  */
 import Home from '../pages/Home';
+import Listing from '../pages/Listing';
 
 export default () => {
     return (
         <Router>
             <Switch>
                 <Route path="/home" component={Home} />
-                <Redirect from="*" to="/home" />
+                <Route path="/listing" component={Listing} />
+                <Redirect from="*" to="/listing" />
             </Switch>
         </Router>
     );

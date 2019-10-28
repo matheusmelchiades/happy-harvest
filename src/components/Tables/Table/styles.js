@@ -4,10 +4,14 @@ import * as MaterialUI from '@material-ui/core';
 
 export const Container = styled(MaterialUI.Container)`
     height: 100vh;
-    padding-top: 10%;
+    padding-top: 5%;
 `;
 
-export const Paper = styled(MaterialUI.Paper)``;
+export const Paper = styled(MaterialUI.Paper)`
+    &&.MuiPaper-rounded {
+        border-radius: 15px;
+    }
+`;
 
 export const Table = styled(MaterialUI.Table)``;
 
@@ -20,7 +24,7 @@ export const TableBody = styled(MaterialUI.TableBody)`
     }
 `;
 
-export const TableRow = styled(MaterialUI.TableRow).attrs({})``;
+export const TableRow = styled(MaterialUI.TableRow)``;
 
 export const TableCell = styled(MaterialUI.TableCell).attrs({
     align: 'center',
