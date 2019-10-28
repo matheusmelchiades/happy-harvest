@@ -4,7 +4,6 @@ import {
     Container,
     Logo,
     LogoIcon,
-    EcoIcon,
     ToolContent,
     ToolContentItem,
     Icon,
@@ -17,7 +16,7 @@ const Toolbar = () => {
     useEffect(() => {
         async function fetchMenus() {
             try {
-                const response = await api.get('/menus');
+                const response = await api.get('/system/toolbar');
 
                 setMenus(response.data);
             } catch (err) {
@@ -32,7 +31,7 @@ const Toolbar = () => {
         <Container>
             <Logo>
                 <LogoIcon>
-                    <EcoIcon />
+                    <Icon>eco</Icon>
                 </LogoIcon>
             </Logo>
             <ToolContent>

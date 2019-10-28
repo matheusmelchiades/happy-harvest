@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import * as MaterialUI from '@material-ui/core';
-import * as MaterialIcons from '@material-ui/icons';
 
 export const Container = styled(MaterialUI.Paper)`
     display: flex;
@@ -25,10 +24,6 @@ export const Logo = styled.div`
 export const LogoIcon = styled(MaterialUI.Icon)`
     margin: 0;
     padding: 0;
-`;
-
-export const EcoIcon = styled(MaterialIcons.Eco)`
-    color: white;
 `;
 
 export const ToolContent = styled(MaterialUI.List)``;
