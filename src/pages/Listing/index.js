@@ -36,19 +36,20 @@ export default function Listing({ history }) {
     return (
         <Layout>
             <FlexRow>
-                <TabList
-                    data={data}
-                    value={tabValue}
-                    onChange={handleChangeTab}
-                />
+                <TabList data={data} value={tabValue} onChange={handleChangeTab} />
                 {data.map(({ label, path }) => (
                     <Route
                         key={path}
                         path={`${PATH_ROOT}${path}`}
                         component={() => (
                             <Table
-                                title={`Search for some ${label}`}
                                 path={path}
+                                title={`Search for some ${label}`}
+                                onClick={item => {
+                                    if (path === '/field') {
+                                        history.push('/map', item);
+                                    }
+                                }}
                             />
                         )}
                     />
