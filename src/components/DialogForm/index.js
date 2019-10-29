@@ -2,43 +2,25 @@ import React, { useState } from 'react';
 
 import { Container, Tabs, Tab } from './styles';
 import * as Forms from '../Forms';
-
-const data = [
-    {
-        tab: 'Mill',
-        form: 'Mill',
-    },
-    {
-        tab: 'Harvest',
-        form: 'Harvest',
-    },
-    {
-        tab: 'Farm',
-        form: 'Farm',
-    },
-    {
-        tab: 'Field',
-        form: 'Field',
-    },
-];
-
-export const RenderForm = ({ form }) => {
-    return Forms[form]();
-};
+import SwipeableViews from 'react-swipeable-views';
 
 export default function() {
-    const [tabs] = useState(data);
     const [index, SetIndex] = useState(0);
 
     return (
-        <Container open={true} fullWidth={true} maxWidth="md">
+        <Container open={true} fullWidth={true} maxWidth="md" style={{ zIndex: 0 }}>
             <Tabs value={index} onChange={(_, value) => SetIndex(value)}>
-                {tabs.map(({ tab }) => (
-                    <Tab key={tab} label={tab} />
-                ))}
+                <Tab label="Mill" />
+                <Tab label="Harvest" />
+                <Tab label="Farm" />
+                <Tab label="Field" />
             </Tabs>
-
-            {!!tabs.length && <RenderForm form={tabs[index].form} />}
+            <SwipeableViews index={index}>
+                <Forms.Mill />
+                <Forms.Harvest />
+                <Forms.Farm />
+                <Forms.Field />
+            </SwipeableViews>
         </Container>
     );
 }
