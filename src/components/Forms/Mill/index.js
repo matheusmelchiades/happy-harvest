@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../../services/api';
 
-import { Button, Layout, MessageResponse } from '../components';
-import { Input } from './styles';
+import { Button, Layout, MessageResponse, Input } from '../components';
 
 const FORM_INIT = { name: '' };
 const RESPONSE_INIT = { success: false, error: false, message: '' };
@@ -41,6 +40,7 @@ export default function() {
             footerEndChildren={<Button title="Create Mill" onClick={submitForm} />}
         >
             <Input
+                style={{ paddingTop: '10%' }}
                 value={form.name}
                 label="Name"
                 placeholder="Type a new mill..."
