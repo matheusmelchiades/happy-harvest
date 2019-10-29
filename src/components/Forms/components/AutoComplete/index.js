@@ -6,8 +6,6 @@ import { Input } from '../Input/styles';
 export default function({ onChange, input, getOptionLabel, options = [] }) {
     const [open, setOpen] = useState(false);
 
-    console.log(options);
-
     return (
         <Autocomplete
             open={open}
