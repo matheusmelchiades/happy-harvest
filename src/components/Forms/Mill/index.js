@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../../../services/api';
 
-import Button from '../Button';
-import Layout from '../Layout';
-import MessageResponse from '../MessageResponse';
+import { Button, Layout, MessageResponse } from '../components';
 import { Input } from './styles';
 
-const FORM_INIT = {
-    name: '',
-};
+const FORM_INIT = { name: '' };
+const RESPONSE_INIT = { success: false, error: false, message: '' };
 
 export default function() {
     const [form, setForm] = useState(FORM_INIT);
     const [response, setResponse] = useState({ success: false, error: false, message: '' });
+
+    useEffect(() => {
+        setTimeout(() => {
+            setResponse(RESPONSE_INIT);
+        }, 5000);
+    }, [response]);
 
     async function submitForm() {
         try {
@@ -23,10 +26,12 @@ export default function() {
                 setForm(FORM_INIT);
             }
         } catch (err) {
-            if (err.response.status === 422) {
+            if (err.response && err.response.status === 422) {
                 const { message } = err.response.data;
-                setResponse({ ...response, error: true, message });
+                return setResponse({ ...response, error: true, message });
             }
+
+            return setResponse({ ...response, error: true, message: 'Erro desconhecido' });
         }
     }
 
@@ -40,7 +45,6 @@ export default function() {
                 label="Name"
                 placeholder="Type a new mill..."
                 fullWidth={true}
-                variant="outlined"
                 onChange={e => setForm({ ...form, name: e.target.value })}
             />
         </Layout>
