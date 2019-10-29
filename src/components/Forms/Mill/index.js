@@ -39,8 +39,9 @@ export default function() {
             footerStartChildren={<MessageResponse {...response} />}
             footerEndChildren={<Button title="Create Mill" onClick={submitForm} />}
         >
+            <br />
+            <br />
             <Input
-                style={{ paddingTop: '10%' }}
                 value={form.name}
                 label="Name"
                 placeholder="Type a new mill..."
