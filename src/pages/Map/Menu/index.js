@@ -14,7 +14,9 @@ export default function({ position, items = [] }) {
         show && (
             <Menu position={position}>
                 {items.map(({ label = '', onClick }) => (
-                    <MenuItem onClick={onClick}>{label}</MenuItem>
+                    <MenuItem key={label} onClick={onClick}>
+                        {label}
+                    </MenuItem>
                 ))}
             </Menu>
         )

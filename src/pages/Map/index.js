@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MapGL from 'react-map-gl';
 
-import { Layout } from '../../components';
+import { Layout, DialogForm } from '../../components';
 import Menu from './Menu';
 
 const token =
@@ -15,7 +15,7 @@ const viewPortInit = {
     pitch: 0,
 };
 
-const Map = ({ containerWidth: width, containerHeight: height, history }) => {
+const Map = ({ history }) => {
     const [viewPort, setViewPort] = useState(viewPortInit);
     const [positionMenu, setPositionMenu] = useState({ x: 0, y: 0 });
     const [geo, setGeo] = useState({});
@@ -63,6 +63,7 @@ const Map = ({ containerWidth: width, containerHeight: height, history }) => {
                     ]}
                 />
             </MapGL>
+            <DialogForm title="mill" dialogProps={{ open: true }} />
         </Layout>
     );
 };
