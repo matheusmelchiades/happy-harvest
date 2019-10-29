@@ -4,11 +4,11 @@ import { Container, Tabs, Tab } from './styles';
 import * as Forms from '../Forms';
 import SwipeableViews from 'react-swipeable-views';
 
-export default function() {
+export default function({ open = false }) {
     const [index, SetIndex] = useState(0);
 
     return (
-        <Container open={true} fullWidth={true} maxWidth="md" style={{ zIndex: 0 }}>
+        <Container open={open} fullWidth={true} maxWidth="md" style={{ zIndex: 0 }}>
             <Tabs value={index} onChange={(_, value) => SetIndex(value)}>
                 <Tab label="Mill" />
                 <Tab label="Harvest" />

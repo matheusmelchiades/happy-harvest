@@ -63,7 +63,7 @@ const Map = ({ history }) => {
                     ]}
                 />
             </MapGL>
-            <DialogForm title="mill" dialogProps={{ open: true }} />
+            <DialogForm open={true} />
         </Layout>
     );
 };
