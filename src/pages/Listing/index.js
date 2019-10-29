@@ -11,26 +11,24 @@ export default function Listing({ history }) {
     const [data, setData] = useState([]);
     const [tabValue, setTabValue] = useState(0);
 
-    const fetchData = async () => {
-        try {
-            const response = await api.get('/system/tabListing');
-            const [firstItem] = response.data;
-
-            history.push(`${PATH_ROOT}${firstItem.path}`);
-
-            setData(response.data);
-        } catch (err) {
-            return err.message;
-        }
-    };
-
     const handleChangeTab = ({ value, item }) => {
         setTabValue(value);
         history.push(`${PATH_ROOT}${item.path}`);
     };
 
     useEffect(() => {
-        fetchData();
+        (async function fetchData() {
+            try {
+                const response = await api.get('/system/tabListing');
+                const [firstItem] = response.data;
+
+                history.push(`${PATH_ROOT}${firstItem.path}`);
+
+                setData(response.data);
+            } catch (err) {
+                return err.message;
+            }
+        })();
     }, []);
 
     return (
