@@ -49,7 +49,6 @@ export default function() {
 
     // SEARCH FOR MILLS TO AUTOCOMPLETE
     useEffect(() => {
-        if (optionSelected !== 'mill') return;
         (async function searchMills() {
             try {
                 const response = await api.get('/mill', { params: { search: filter.mill } });
@@ -122,9 +121,10 @@ export default function() {
                 setForm(FORM_INIT);
                 setOptionsMills([]);
                 setOptionsHarvests([]);
-                millSelected({});
+                setMillSelected({});
             }
         } catch (err) {
+            console.log(err);
             if (err.response && err.response.status === 422) {
                 const { message } = err.response.data;
                 return setResponse({ ...response, error: true, message });
@@ -170,7 +170,9 @@ export default function() {
                 label="Select how to search a harvest"
                 options={SELECT_DATA}
                 renderByField={item => item.label}
-                onChange={item => setOptionSelected(item)}
+                onChange={item => {
+                    setOptionSelected(item);
+                }}
             />
 
             <br />
@@ -211,7 +213,11 @@ export default function() {
                         input={{
                             label: 'Mills',
                             placeholder: 'Choose a mill',
-                            onChange: e => handlerSetFilter('mill', e.target.value),
+                            onChange: e => {
+                                console.log(e.target.value);
+                                handlerSetFilter('mill', e.target.value);
+                                console.log(filter);
+                            },
                         }}
                     />
                 </>
