@@ -14,9 +14,9 @@ module.exports = {
 
     deploy: {
         development: {
-            key: '~/.ssh/keys/spottedtest.pem',
+            key: '~/.ssh/keys/happyHarvest.pem',
             user: 'ubuntu',
-            host: 'ec2-3-93-220-13.compute-1.amazonaws.com',
+            host: 'ec2-13-59-226-165.us-east-2.compute.amazonaws.com',
             ref: 'origin/master',
             repo: 'git@github.com:matheusmelchiades/happy-harvest.git',
             path: '/home/ubuntu/happy-harvest/app',

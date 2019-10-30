@@ -19,7 +19,7 @@ export default function Listing({ history }) {
     useEffect(() => {
         (async function fetchData() {
             try {
-                const response = await api.get('/system/tabListing');
+                const response = await api.get('/system/tablist');
                 const [firstItem] = response.data;
 
                 history.push(`${PATH_ROOT}${firstItem.path}`);
