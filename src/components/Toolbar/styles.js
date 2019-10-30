@@ -6,6 +6,7 @@ export const Container = styled(MaterialUI.Paper)`
     display: flex;
     flex-direction: column;
 
+    min-width: 5%;
     && {
         background-color: #27ae60;
         padding: 0;

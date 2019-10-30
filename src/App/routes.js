@@ -4,18 +4,18 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 /**
  * PAGES COMPONENTS
  */
-import Home from '../pages/Home';
 import Listing from '../pages/Listing';
+import Register from '../pages/Register';
 import Map from '../pages/Map';
 
 export default () => {
     return (
         <Router>
             <Switch>
-                <Route path="/home" component={Home} />
                 <Route path="/map" component={Map} />
+                <Route path="/register" component={Register} />
                 <Route path="/listing" component={Listing} />
-                <Redirect from="*" to="/map" />
+                <Redirect from="*" to="/listing" />
             </Switch>
         </Router>
     );
