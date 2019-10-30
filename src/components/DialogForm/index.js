@@ -5,7 +5,7 @@ import * as Forms from '../Forms';
 import SwipeableViews from 'react-swipeable-views';
 
 export default function({ open = false }) {
-    const [index, SetIndex] = useState(0);
+    const [index, SetIndex] = useState(2);
 
     return (
         <Container open={open} fullWidth={true} maxWidth="md" style={{ zIndex: 0 }}>

@@ -99,7 +99,7 @@ export default function() {
                 onChange={handleMillSelect}
                 clearOnEscape
                 input={{
-                    label: 'test',
+                    label: 'Mill',
                     placeholder: 'Choose a mill',
                     onChange: e => setSearch(e.target.value),
                 }}

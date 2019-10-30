@@ -9,11 +9,10 @@ export default props => (
     <MuiProvider>
         <Provider utils={MomentUtils} moment={moment}>
             <DatePicker
-                disableToolbar
                 format="DD/MM/YYYY"
                 inputVariant="outlined"
                 InputAdornmentProps={{ position: 'start' }}
-                invalidDateMessage="Data invalida"
+                invalidDateMessage="Invalid Date"
                 {...props}
             />
         </Provider>
