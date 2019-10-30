@@ -48,6 +48,7 @@ export default function Listing({ history }) {
                                         history.push('/map', item);
                                     }
                                 }}
+                                search={{ pathToSearch: path }}
                             />
                         )}
                     />

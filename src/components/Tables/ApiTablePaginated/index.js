@@ -3,14 +3,18 @@ import api from '../../../services/api';
 
 import Table from '../Table';
 
-export default function ApiTablePaginated({ path = '', ...props }) {
+export default function ApiTablePaginated({
+    path = '',
+    search: { pathToSearch = '', renderResponse = res => res.data },
+    ...props
+}) {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [inputSearch, setInputSearch] = useState('');
 
     useEffect(() => {
-        async function fetchData() {
+        (async function fetchData() {
             try {
                 const response = await api.get(`${path}/listing`, {
                     params: {
@@ -22,10 +26,25 @@ export default function ApiTablePaginated({ path = '', ...props }) {
             } catch (err) {
                 return err.message;
             }
-        }
-
-        fetchData();
+        })();
     }, [page, rowsPerPage]);
+
+    useEffect(() => {
+        if (!pathToSearch || !inputSearch) return;
+
+        (async function searchData() {
+            try {
+                const response = await api.get(pathToSearch, { params: { search: inputSearch } });
+
+                if (response.status === 200) {
+                    const resData = renderResponse(response);
+                    setData({ ...data, rows: resData });
+                }
+            } catch (err) {
+                return err.message;
+            }
+        })();
+    }, [inputSearch]);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -46,8 +65,8 @@ export default function ApiTablePaginated({ path = '', ...props }) {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
             search={{
                 searchInput: inputSearch,
-                onChangeInput: value => setInputSearch(value),
                 clearInput: () => setInputSearch(''),
+                onChangeInput: value => setInputSearch(value),
             }}
         />
     );
