@@ -4,8 +4,7 @@ import MapGL from 'react-map-gl';
 import { Layout, DialogForm } from '../../components';
 import Menu from './Menu';
 
-const token =
-    'pk.eyJ1IjoibWF0aGV1c21lbGNoaWFkZXMiLCJhIjoiY2pzdGRuanQxMHYwZzQ0cDZlMHhmZXQxeCJ9.SKPEaAIYVQ0-BFbppHQfyA';
+const token = process.env.REACT_APP_MAP_TOKEN;
 
 const viewPortInit = {
     latitude: 0,

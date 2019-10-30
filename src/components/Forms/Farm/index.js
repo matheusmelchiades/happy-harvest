@@ -124,7 +124,6 @@ export default function() {
                 setMillSelected({});
             }
         } catch (err) {
-            console.log(err);
             if (err.response && err.response.status === 422) {
                 const { message } = err.response.data;
                 return setResponse({ ...response, error: true, message });
@@ -214,9 +213,7 @@ export default function() {
                             label: 'Mills',
                             placeholder: 'Choose a mill',
                             onChange: e => {
-                                console.log(e.target.value);
                                 handlerSetFilter('mill', e.target.value);
-                                console.log(filter);
                             },
                         }}
                     />
