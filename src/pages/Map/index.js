@@ -7,8 +7,8 @@ import Menu from './Menu';
 const token = process.env.REACT_APP_MAP_TOKEN;
 
 const viewPortInit = {
-    latitude: 0,
-    longitude: 0,
+    latitude: -29.908557757624717,
+    longitude: -51.18116996977884,
     zoom: 13,
     bearing: 0,
     pitch: 0,
@@ -32,7 +32,7 @@ const Map = ({ history }) => {
             });
         } else {
             navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-                setViewPort({ ...viewPort, latitude, longitude });
+                if (latitude && longitude) setViewPort({ ...viewPort, latitude, longitude });
             });
         }
     }, []);
