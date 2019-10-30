@@ -15,7 +15,7 @@ export default function() {
     const [form, setForm] = useState(FORM_INIT);
     const [search, setSearch] = useState('');
     const [options, setOptions] = useState([]);
-    const [response, setResponse] = useState({ success: false, error: false, message: '' });
+    const [response, setResponse] = useState(RESPONSE_INIT);
 
     useEffect(() => {
         setTimeout(() => {

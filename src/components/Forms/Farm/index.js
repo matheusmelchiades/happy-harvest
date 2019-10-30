@@ -38,7 +38,7 @@ export default function() {
     const [optionSelected, setOptionSelected] = useState({});
     const [optionsHarvests, setOptionsHarvests] = useState([]);
     const [optionsMills, setOptionsMills] = useState([]);
-    const [response, setResponse] = useState({ success: false, error: false, message: '' });
+    const [response, setResponse] = useState(RESPONSE_INIT);
 
     // DELAY ANIMATION MESSAGE RESPONSE
     useEffect(() => {

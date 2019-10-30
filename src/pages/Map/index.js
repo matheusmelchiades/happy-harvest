@@ -16,6 +16,8 @@ const viewPortInit = {
 };
 
 const Map = ({ history }) => {
+    const tabIndexDialog = 3;
+    const [openModal, setOpenModal] = useState(false);
     const [viewPort, setViewPort] = useState(viewPortInit);
     const [positionMenu, setPositionMenu] = useState({ x: 0, y: 0 });
     const [geo, setGeo] = useState({});
@@ -56,14 +58,18 @@ const Map = ({ history }) => {
                         {
                             label: 'New Field',
                             onClick: () => {
-                                console.log('chamo');
-                                console.log(geo);
+                                localStorage.setItem('geolocation', JSON.stringify(geo));
+                                setOpenModal(!openModal);
                             },
                         },
                     ]}
                 />
             </MapGL>
-            <DialogForm open={true} />
+            <DialogForm
+                open={openModal}
+                onClose={() => setOpenModal(!openModal)}
+                openOn={tabIndexDialog}
+            />
         </Layout>
     );
 };
