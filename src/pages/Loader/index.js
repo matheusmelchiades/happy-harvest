@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Lottie from 'react-lottie';
 
-import { Container } from './styles';
+import { Container, Loader } from './styles';
 import animationData from '../../animations/ecolight.json';
 
 const DEFAULT_OPTIONS = {
@@ -13,22 +13,24 @@ const DEFAULT_OPTIONS = {
     },
 };
 
-export default function Loader({ history }) {
+export default function({ history }) {
     useEffect(() => {
         setTimeout(() => {
             history.push('/map');
         }, 4000);
-    }, []);
+    });
 
     return (
         <Container>
-            <Lottie
-                options={DEFAULT_OPTIONS}
-                height={500}
-                width={500}
-                isStopped={false}
-                isPaused={false}
-            />
+            <Loader>
+                <Lottie
+                    options={DEFAULT_OPTIONS}
+                    height={500}
+                    width={500}
+                    isStopped={false}
+                    isPaused={false}
+                />
+            </Loader>
         </Container>
     );
 }

@@ -17,7 +17,7 @@ export default () => {
                 <Route path="/map" component={Map} />
                 <Route path="/listing" component={Listing} />
                 <Route path="/register" component={Register} />
-                <Redirect from="*" to="/listing" />
+                <Redirect from="*" to="/" />
             </Switch>
         </Router>
     );
